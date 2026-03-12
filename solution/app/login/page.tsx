@@ -30,9 +30,16 @@ export default function LoginPage() {
           setError(data.error ?? "Registration failed.");
           return;
         }
+
+        // Switch to login tab instead of auto-logging in
+        setMode("login");
+        setPassword("");
+        // Optionally show a success message via error state styled as success later, or just clear error
+        setError(null);
+        return;
       }
 
-      // Sign in after register or directly
+      // Sign in (only reachable if mode === 'login')
       const result = await signIn("credentials", {
         email,
         password,

@@ -7,6 +7,7 @@
     "Solidity", "Move", "Zig", "OCaml", "Prolog", "Ada", "VHDL", "Verilog"
   ],
   "frontend_frameworks": [
+    "HTML", "CSS",
     "React", "Next.js", "Vue.js", "Nuxt.js", "Angular", "Svelte", "SvelteKit",
     "Astro", "Remix", "Gatsby", "Ember.js", "Backbone.js", "Alpine.js",
     "Qwik", "SolidJS", "Lit", "Preact", "Stencil", "Eleventy",

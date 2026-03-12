@@ -134,6 +134,8 @@ export default function Home() {
             bonusSkills={result.bonusSkills}
             readinessScore={result.readinessScore}
             roadmap={result.roadmap}
+            userEmail={session?.user?.email}
+            onSignOut={() => signOut({ callbackUrl: "/login" })}
             onReset={handleReset}
           />
         </div>

@@ -13,10 +13,12 @@ interface DashboardProps {
   bonusSkills: string[];
   readinessScore: number;
   roadmap: RoadmapItem[];
+  userEmail?: string | null;
+  onSignOut: () => void;
   onReset: () => void;
 }
 
-export default function Dashboard({ jobRole, detectedSkills, matchedSkills, missingSkills, bonusSkills, readinessScore, roadmap, onReset }: DashboardProps) {
+export default function Dashboard({ jobRole, detectedSkills, matchedSkills, missingSkills, bonusSkills, readinessScore, roadmap, userEmail, onSignOut, onReset }: DashboardProps) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
       {/* Header */}
@@ -25,7 +27,15 @@ export default function Dashboard({ jobRole, detectedSkills, matchedSkills, miss
           <div className="section-label" style={{ marginBottom: "0.25rem" }}>Analysis Results</div>
           <h2 className="gradient-text" style={{ fontSize: "1.6rem", fontWeight: 800, margin: 0 }}>{jobRole}</h2>
         </div>
-        <button className="btn-secondary" onClick={onReset} id="reset-btn">← New Analysis</button>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          {userEmail && (
+            <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+              {userEmail}
+            </span>
+          )}
+          <button className="btn-secondary" onClick={onSignOut} style={{ padding: "0.4rem 0.9rem", fontSize: "0.78rem" }}>Sign Out</button>
+          <button className="btn-secondary" onClick={onReset} id="reset-btn">← New Analysis</button>
+        </div>
       </div>
 
       {/* Score + Detected Skills */}
