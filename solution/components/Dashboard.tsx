@@ -48,10 +48,14 @@ export default function Dashboard({ jobRole, detectedSkills, matchedSkills, miss
       <div className="glass-card" style={{ padding: "1.25rem 1.5rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.6rem" }}>
           <div className="section-label" style={{ margin: 0 }}>Career Readiness</div>
-          <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--indigo-light)" }}>{readinessScore}%</span>
+          <span style={{ fontSize: "0.875rem", fontWeight: 700, color: readinessScore >= 75 ? "#34d399" : readinessScore >= 50 ? "#fbbf24" : "#fb7185" }}>{readinessScore}%</span>
         </div>
         <div className="progress-bar-track">
           <div className="progress-bar-fill" style={{ width: `${readinessScore}%` }} />
+        </div>
+        <div style={{ marginTop: "0.5rem", fontSize: "0.76rem", color: "var(--text-muted)" }}>
+          {matchedSkills.length} of {matchedSkills.length + missingSkills.length} required skills matched
+          {bonusSkills.length > 0 && ` · ${bonusSkills.length} bonus skills`}
         </div>
       </div>
 
@@ -87,18 +91,19 @@ export default function Dashboard({ jobRole, detectedSkills, matchedSkills, miss
         </div>
       )}
 
-      {/* Roadmap */}
+      {/* Learning Roadmap */}
       {roadmap.length > 0 && (
         <div>
           <div style={{ marginBottom: "1rem" }}>
             <div className="section-label">🗺 Learning Roadmap</div>
             <p style={{ fontSize: "0.84rem", color: "var(--text-secondary)" }}>
-              Curated resources to close your skill gaps — in priority order.
+              Curated learning resources and hands-on project ideas for each missing skill.
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
             {roadmap.map((item, i) => (
-              <RoadmapCard key={item.skill} skill={item.skill} resources={item.resources} index={i} />
+              <RoadmapCard key={item.skill} skill={item.skill}
+                resources={item.resources} projectIdeas={item.projectIdeas ?? []} index={i} />
             ))}
           </div>
         </div>

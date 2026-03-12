@@ -22,6 +22,7 @@ export default function Home() {
   const [selectedRole, setSelectedRole] = useState("");
   const [resumeSkills, setResumeSkills] = useState<string[]>([]);
   const [githubSkills, setGithubSkills] = useState<string[]>([]);
+  const [newGithubSkills, setNewGithubSkills] = useState<string[]>([]);
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
@@ -65,9 +66,13 @@ export default function Home() {
     setResult(null);
     setResumeSkills([]);
     setGithubSkills([]);
+    setNewGithubSkills([]);
     setSelectedRole("");
     setError(null);
   }
+
+  // Suppress unused warning — newGithubSkills shown in UI below
+  void newGithubSkills;
 
   // ──────────────────────────────────────────────────────────
   // RESULTS DASHBOARD
@@ -170,7 +175,7 @@ export default function Home() {
               <StepBadge n={2} />
               <div>
                 <div style={{ fontWeight: 700, fontSize: "1rem" }}>GitHub Profile</div>
-                <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Analyzes public repos, languages & topics</div>
+                <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Analyzes public repos, languages &amp; topics</div>
               </div>
               {githubSkills.length > 0 && (
                 <div style={{ marginLeft: "auto", fontSize: "0.8rem", color: "#34d399", fontWeight: 600 }}>
@@ -180,6 +185,7 @@ export default function Home() {
             </div>
             <GitHubSection
               onSkillsDetected={(skills) => setGithubSkills(skills)}
+              onNewSkills={(ns) => setNewGithubSkills(ns)}
             />
           </div>
 

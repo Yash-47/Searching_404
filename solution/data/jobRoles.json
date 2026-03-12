@@ -1,32 +1,86 @@
 {
   "Frontend Developer": {
-    "required": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Git", "REST API", "Responsive Design"]
+    "required": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Git", "REST API", "Responsive Design", "Webpack", "Vite", "Redux", "GraphQL", "Testing Library", "Accessibility"]
   },
   "Backend Developer": {
-    "required": ["Node.js", "Express", "Python", "SQL", "PostgreSQL", "REST API", "GraphQL", "Docker", "Git", "API Design", "Authentication"]
+    "required": ["Node.js", "Express.js", "Python", "PostgreSQL", "MySQL", "REST API", "GraphQL", "Docker", "Git", "API Design", "Redis", "Authentication", "SQL", "FastAPI", "TypeScript"]
   },
   "Full Stack Developer": {
-    "required": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Node.js", "Express", "SQL", "MongoDB", "Git", "Docker", "REST API"]
+    "required": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Node.js", "Express.js", "PostgreSQL", "MongoDB", "Git", "Docker", "REST API", "GraphQL", "Redux", "Next.js"]
   },
   "Data Scientist": {
-    "required": ["Python", "Machine Learning", "Deep Learning", "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "Data Visualization", "Statistics", "SQL", "Jupyter"]
+    "required": ["Python", "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Matplotlib", "Seaborn", "SQL", "Jupyter", "Statistics", "Machine Learning", "Data Visualization", "R", "Spark"]
   },
   "Machine Learning Engineer": {
-    "required": ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "Scikit-learn", "Docker", "MLOps", "SQL", "Git", "Statistics"]
+    "required": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Docker", "Kubernetes", "MLflow", "Git", "SQL", "Hugging Face", "FastAPI", "Pandas", "NumPy", "ONNX", "Ray"]
+  },
+  "AI / LLM Engineer": {
+    "required": ["Python", "PyTorch", "Hugging Face", "Transformers", "LangChain", "LlamaIndex", "OpenAI API", "FastAPI", "FAISS", "Pinecone", "Weaviate", "Docker", "Git", "Prompt Engineering", "RAG"]
   },
   "DevOps Engineer": {
-    "required": ["Docker", "Kubernetes", "AWS", "CI/CD", "GitHub Actions", "Linux", "Terraform", "Ansible", "Bash", "Nginx", "Python"]
+    "required": ["Docker", "Kubernetes", "AWS", "CI/CD", "GitHub Actions", "Linux", "Terraform", "Ansible", "Bash", "Nginx", "Python", "Helm", "Prometheus", "Grafana", "Git"]
   },
-  "Mobile Developer": {
-    "required": ["React Native", "Flutter", "JavaScript", "TypeScript", "Dart", "Git", "REST API", "Firebase", "Android", "iOS"]
+  "Cloud Engineer": {
+    "required": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform", "CI/CD", "Linux", "Python", "IAM", "Networking", "Load Balancing", "Git", "Bash", "CloudFormation"]
   },
   "Cloud Architect": {
-    "required": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform", "CI/CD", "Linux", "Microservices", "System Design", "Python"]
+    "required": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform", "Microservices", "System Design", "Python", "Networking", "Security", "Cost Optimization", "Serverless", "Event Driven Architecture"]
+  },
+  "Site Reliability Engineer": {
+    "required": ["Linux", "Python", "Go", "Kubernetes", "Docker", "Prometheus", "Grafana", "Terraform", "CI/CD", "Bash", "Incident Management", "SLO", "SLI", "Error Budget", "Observability"]
+  },
+  "Mobile Developer": {
+    "required": ["React Native", "Flutter", "JavaScript", "TypeScript", "Dart", "Git", "REST API", "Firebase", "Swift", "Kotlin", "Fastlane", "App Store", "Android"]
+  },
+  "iOS Developer": {
+    "required": ["Swift", "SwiftUI", "UIKit", "Xcode", "Objective-C", "Core Data", "Combine", "CocoaPods", "Swift Package Manager", "REST API", "Firebase", "Git", "TestFlight", "ARKit"]
+  },
+  "Android Developer": {
+    "required": ["Kotlin", "Java", "Jetpack Compose", "Android SDK", "Android Studio", "Gradle", "Room Database", "Retrofit", "Coroutines", "MVVM", "Firebase", "Git", "REST API", "Hilt"]
   },
   "Blockchain Developer": {
-    "required": ["Solidity", "Web3", "Ethereum", "Smart Contracts", "JavaScript", "TypeScript", "Git", "Node.js", "React", "Blockchain"]
+    "required": ["Solidity", "Ethereum", "Web3.js", "Ethers.js", "Hardhat", "Foundry", "OpenZeppelin", "JavaScript", "TypeScript", "Smart Contracts", "IPFS", "React", "Git", "DeFi", "NFT"]
   },
   "Cybersecurity Engineer": {
-    "required": ["Linux", "Python", "Bash", "Networking", "Ethical Hacking", "Cryptography", "Docker", "Git", "SQL", "System Design"]
+    "required": ["Linux", "Python", "Bash", "Networking", "TCP/IP", "Cryptography", "Burp Suite", "Nmap", "Wireshark", "Metasploit", "OWASP", "Docker", "Git", "Penetration Testing", "SIEM"]
+  },
+  "Game Developer": {
+    "required": ["Unity", "C#", "Unreal Engine", "C++", "Blueprint", "OpenGL", "Git", "Shader", "GLSL", "Physics Engine", "3D Math", "Multiplayer", "Game Design", "Optimization", "Profiling"]
+  },
+  "Embedded Systems Engineer": {
+    "required": ["C", "C++", "Embedded C", "ARM Cortex", "FreeRTOS", "UART", "SPI", "I2C", "GPIO", "Arduino", "Raspberry Pi", "JTAG", "Oscilloscope", "Linux", "Bash", "Git"]
+  },
+  "IoT Engineer": {
+    "required": ["C", "C++", "Python", "MQTT", "Embedded C", "ESP32", "Arduino", "Raspberry Pi", "BLE", "Wi-Fi", "AWS IoT", "Docker", "Node-RED", "Git", "Linux"]
+  },
+  "FPGA Engineer": {
+    "required": ["VHDL", "Verilog", "SystemVerilog", "FPGA", "Xilinx Vivado", "Intel Quartus", "Timing Analysis", "RTL Design", "Simulation", "ModelSim", "Synthesis", "Logic Design", "C++", "Git"]
+  },
+  "RTL / VLSI Design Engineer": {
+    "required": ["Verilog", "SystemVerilog", "VHDL", "RTL Design", "Logic Synthesis", "Static Timing Analysis", "Design Compiler", "Cadence", "Synopsys", "Primetime", "Lint", "DFT", "Formal Verification", "Git"]
+  },
+  "ASIC Verification Engineer": {
+    "required": ["SystemVerilog", "UVM", "Verilog", "Assertion Based Verification", "Functional Coverage", "Code Coverage", "Simulation", "VCS", "Questa", "Python", "Tcl", "SVA", "OVM", "Git"]
+  },
+  "Computer Architecture Engineer": {
+    "required": ["C", "C++", "Assembly", "Verilog", "RISC-V", "Cache Design", "Pipeline Design", "Memory Architecture", "Performance Profiling", "Gem5", "QEMU", "Linux", "Git", "Computer Organization"]
+  },
+  "Low Level Systems Engineer": {
+    "required": ["C", "C++", "Assembly", "Rust", "Linux Kernel", "System Calls", "Memory Management", "POSIX", "Multithreading", "IPC", "GDB", "Profiling", "Git", "Operating Systems", "Bash"]
+  },
+  "Compiler Engineer": {
+    "required": ["C", "C++", "LLVM", "Clang", "Compiler Design", "Parsing", "Lexical Analysis", "Code Generation", "Optimization", "IR", "Assembly", "Python", "Git", "ANTLR", "Dragon Book"]
+  },
+  "Database Engineer": {
+    "required": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "SQL", "Query Optimization", "Indexing", "Database Design", "Replication", "Sharding", "Cassandra", "Python", "Git", "OLAP", "OLTP"]
+  },
+  "Data Engineer": {
+    "required": ["Python", "Apache Spark", "Apache Kafka", "Apache Airflow", "SQL", "PostgreSQL", "dbt", "Pandas", "AWS", "Docker", "Git", "Data Modeling", "ETL", "Snowflake", "BigQuery"]
+  },
+  "QA / Test Engineer": {
+    "required": ["Jest", "Cypress", "Playwright", "Selenium", "Python", "PyTest", "Postman", "REST API Testing", "CI/CD", "Git", "SQL", "Test Automation", "Performance Testing", "k6", "TestNG"]
+  },
+  "Systems Programmer": {
+    "required": ["C", "C++", "Rust", "Go", "Assembly", "Linux", "POSIX", "Multithreading", "Memory Management", "Networking", "GDB", "Valgrind", "Git", "Operating Systems", "Systems Design"]
   }
 }
