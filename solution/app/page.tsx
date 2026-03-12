@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import UploadSection from "@/components/UploadSection";
 import GitHubSection from "@/components/GitHubSection";
 import JobRoleSelector from "@/components/JobRoleSelector";
@@ -18,6 +20,8 @@ interface AnalysisResult {
 }
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [jobRoles, setJobRoles] = useState<string[]>([]);
   const [selectedRole, setSelectedRole] = useState("");
   const [resumeSkills, setResumeSkills] = useState<string[]>([]);
@@ -26,6 +30,11 @@ export default function Home() {
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (status === "unauthenticated") router.push("/login");
+  }, [status, router]);
 
   // Fetch available job roles on mount
   useEffect(() => {
@@ -74,6 +83,15 @@ export default function Home() {
   // Suppress unused warning — newGithubSkills shown in UI below
   void newGithubSkills;
 
+  // Loading / auth gate
+  if (status === "loading" || status === "unauthenticated") {
+    return (
+      <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div className="animate-spin" style={{ fontSize: "2rem" }}>⟳</div>
+      </main>
+    );
+  }
+
   // ──────────────────────────────────────────────────────────
   // RESULTS DASHBOARD
   // ──────────────────────────────────────────────────────────
@@ -101,6 +119,30 @@ export default function Home() {
   // ──────────────────────────────────────────────────────────
   return (
     <main style={{ minHeight: "100vh", padding: "2.5rem 1rem 4rem" }}>
+      {/* User Header */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          padding: "0.75rem 1.25rem",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.75rem",
+          zIndex: 100,
+        }}
+      >
+        <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+          {session?.user?.email}
+        </span>
+        <button
+          onClick={() => signOut({ callbackUrl: "/login" })}
+          className="btn-secondary"
+          style={{ padding: "0.4rem 0.9rem", fontSize: "0.78rem", minHeight: "auto" }}
+        >
+          Sign Out
+        </button>
+      </div>
       <div style={{ maxWidth: 740, margin: "0 auto" }}>
         {/* Hero */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { analyzeSkillGap, getJobRoles } from "@/lib/skillGapEngine";
 import { generateRoadmap } from "@/lib/roadmapGenerator";
+import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 
 export const runtime = "nodejs";
 
@@ -42,6 +44,36 @@ export async function POST(request: NextRequest) {
     // Generate learning roadmap for missing skills
     const roadmap = generateRoadmap(gapResult.missingSkills);
 
+    // Persist to DB if user is authenticated
+    try {
+      const session = await auth();
+      if (session?.user?.id) {
+        await prisma.profile.upsert({
+          where: { userId: session.user.id },
+          update: {
+            targetRole: jobRole,
+            detectedSkills: skills,
+            matchedSkills: gapResult.matchedSkills,
+            missingSkills: gapResult.missingSkills,
+            bonusSkills: gapResult.bonusSkills,
+            readinessScore: gapResult.readinessScore,
+          },
+          create: {
+            userId: session.user.id,
+            targetRole: jobRole,
+            detectedSkills: skills,
+            matchedSkills: gapResult.matchedSkills,
+            missingSkills: gapResult.missingSkills,
+            bonusSkills: gapResult.bonusSkills,
+            readinessScore: gapResult.readinessScore,
+          },
+        });
+      }
+    } catch (dbErr) {
+      // Non-fatal: log but don't fail the request
+      console.warn("[skill-gap] DB persist failed:", dbErr);
+    }
+
     return NextResponse.json({
       ...gapResult,
       roadmap,
@@ -57,3 +89,4 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({ roles: getJobRoles() });
 }
+
