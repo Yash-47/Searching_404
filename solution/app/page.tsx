@@ -1,65 +1,270 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import UploadSection from "@/components/UploadSection";
+import GitHubSection from "@/components/GitHubSection";
+import JobRoleSelector from "@/components/JobRoleSelector";
+import Dashboard from "@/components/Dashboard";
+import { RoadmapItem } from "@/lib/roadmapGenerator";
+
+interface AnalysisResult {
+  jobRole: string;
+  requiredSkills: string[];
+  matchedSkills: string[];
+  missingSkills: string[];
+  bonusSkills: string[];
+  readinessScore: number;
+  roadmap: RoadmapItem[];
+}
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+  const [jobRoles, setJobRoles] = useState<string[]>([]);
+  const [selectedRole, setSelectedRole] = useState("");
+  const [resumeSkills, setResumeSkills] = useState<string[]>([]);
+  const [githubSkills, setGithubSkills] = useState<string[]>([]);
+  const [analyzing, setAnalyzing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<AnalysisResult | null>(null);
+
+  // Fetch available job roles on mount
+  useEffect(() => {
+    fetch("/api/skill-gap")
+      .then((r) => r.json())
+      .then((d) => setJobRoles(d.roles ?? []))
+      .catch(console.error);
+  }, []);
+
+  // Merge skills from both sources (deduplicated)
+  const allDetectedSkills = [...new Set([...resumeSkills, ...githubSkills])];
+  const hasSkills = allDetectedSkills.length > 0;
+
+  async function handleAnalyze() {
+    if (!selectedRole || !hasSkills) return;
+    setAnalyzing(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/skill-gap", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ skills: allDetectedSkills, jobRole: selectedRole }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? "Analysis failed.");
+        return;
+      }
+      setResult(data);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setAnalyzing(false);
+    }
+  }
+
+  function handleReset() {
+    setResult(null);
+    setResumeSkills([]);
+    setGithubSkills([]);
+    setSelectedRole("");
+    setError(null);
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // RESULTS DASHBOARD
+  // ──────────────────────────────────────────────────────────
+  if (result) {
+    return (
+      <main style={{ minHeight: "100vh", padding: "2rem 1rem" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+          <Dashboard
+            jobRole={result.jobRole}
+            detectedSkills={allDetectedSkills}
+            matchedSkills={result.matchedSkills}
+            missingSkills={result.missingSkills}
+            bonusSkills={result.bonusSkills}
+            readinessScore={result.readinessScore}
+            roadmap={result.roadmap}
+            onReset={handleReset}
+          />
         </div>
       </main>
+    );
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // INPUT FORM
+  // ──────────────────────────────────────────────────────────
+  return (
+    <main style={{ minHeight: "100vh", padding: "2.5rem 1rem 4rem" }}>
+      <div style={{ maxWidth: 740, margin: "0 auto" }}>
+        {/* Hero */}
+        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.35rem 1rem",
+              background: "rgba(99,102,241,0.12)",
+              border: "1px solid rgba(99,102,241,0.3)",
+              borderRadius: "999px",
+              fontSize: "0.78rem",
+              fontWeight: 600,
+              color: "var(--indigo-light)",
+              marginBottom: "1.25rem",
+              letterSpacing: "0.05em",
+            }}
+          >
+            🚀 Hackathon MVP · Skill Gap Analyzer
+          </div>
+
+          <h1
+            style={{
+              fontSize: "clamp(2rem, 6vw, 3.25rem)",
+              fontWeight: 900,
+              lineHeight: 1.1,
+              marginBottom: "1rem",
+            }}
+          >
+            <span className="gradient-text">Analyze Your Skills.</span>
+            <br />
+            <span style={{ color: "var(--text-primary)" }}>Close the Gap.</span>
+          </h1>
+
+          <p
+            style={{
+              fontSize: "1rem",
+              color: "var(--text-secondary)",
+              maxWidth: 520,
+              margin: "0 auto",
+              lineHeight: 1.7,
+            }}
+          >
+            Upload your resume and connect your GitHub to discover your skill gaps against any job role — then get a personalized learning roadmap.
+          </p>
+        </div>
+
+        {/* Step cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+
+          {/* Step 1 — Resume */}
+          <div className="glass-card" style={{ padding: "1.75rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.85rem", marginBottom: "1.25rem" }}>
+              <StepBadge n={1} />
+              <div>
+                <div style={{ fontWeight: 700, fontSize: "1rem" }}>Upload Your Resume</div>
+                <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>PDF format · Skills are auto-detected</div>
+              </div>
+              {resumeSkills.length > 0 && (
+                <div style={{ marginLeft: "auto", fontSize: "0.8rem", color: "#34d399", fontWeight: 600 }}>
+                  ✓ {resumeSkills.length} skills found
+                </div>
+              )}
+            </div>
+            <UploadSection onSkillsDetected={setResumeSkills} />
+          </div>
+
+          {/* Step 2 — GitHub */}
+          <div className="glass-card" style={{ padding: "1.75rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.85rem", marginBottom: "1.25rem" }}>
+              <StepBadge n={2} />
+              <div>
+                <div style={{ fontWeight: 700, fontSize: "1rem" }}>GitHub Profile</div>
+                <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Analyzes public repos, languages & topics</div>
+              </div>
+              {githubSkills.length > 0 && (
+                <div style={{ marginLeft: "auto", fontSize: "0.8rem", color: "#34d399", fontWeight: 600 }}>
+                  ✓ {githubSkills.length} skills found
+                </div>
+              )}
+            </div>
+            <GitHubSection
+              onSkillsDetected={(skills) => setGithubSkills(skills)}
+            />
+          </div>
+
+          {/* Step 3 — Job Role */}
+          <div className="glass-card" style={{ padding: "1.75rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.85rem", marginBottom: "1.25rem" }}>
+              <StepBadge n={3} />
+              <div>
+                <div style={{ fontWeight: 700, fontSize: "1rem" }}>Target Job Role</div>
+                <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Pick which role to benchmark against</div>
+              </div>
+            </div>
+            <JobRoleSelector roles={jobRoles} value={selectedRole} onChange={setSelectedRole} />
+          </div>
+
+          {/* Detected skills preview */}
+          {allDetectedSkills.length > 0 && (
+            <div
+              className="glass-card animate-fade-in-up"
+              style={{ padding: "1.25rem 1.5rem" }}
+            >
+              <div className="section-label">Detected Skills Preview ({allDetectedSkills.length})</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem" }}>
+                {allDetectedSkills.slice(0, 30).map((s) => (
+                  <span key={s} className="badge badge-neutral" style={{ fontSize: "0.75rem" }}>{s}</span>
+                ))}
+                {allDetectedSkills.length > 30 && (
+                  <span className="badge badge-neutral" style={{ fontSize: "0.75rem" }}>+{allDetectedSkills.length - 30} more</span>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Error */}
+          {error && (
+            <div style={{ fontSize: "0.85rem", color: "#fb7185", padding: "0.65rem 1rem", background: "rgba(244,63,94,0.08)", borderRadius: "8px", border: "1px solid rgba(244,63,94,0.2)" }}>
+              {error}
+            </div>
+          )}
+
+          {/* Analyze Button */}
+          <button
+            className="btn-primary"
+            id="analyze-btn"
+            onClick={handleAnalyze}
+            disabled={!hasSkills || !selectedRole || analyzing}
+            style={{ width: "100%", padding: "0.9rem", fontSize: "1rem", letterSpacing: "0.02em" }}
+          >
+            {analyzing ? (
+              <><span className="animate-spin">⟳</span> Analyzing…</>
+            ) : (
+              <>🔍 Analyze Skill Gap</>
+            )}
+          </button>
+
+          {(!hasSkills || !selectedRole) && (
+            <p style={{ textAlign: "center", fontSize: "0.78rem", color: "var(--text-muted)" }}>
+              {!hasSkills ? "Add a resume or GitHub username to continue." : "Select a job role to continue."}
+            </p>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function StepBadge({ n }: { n: number }) {
+  return (
+    <div
+      style={{
+        width: 36,
+        height: 36,
+        borderRadius: "50%",
+        background: "linear-gradient(135deg, var(--indigo), var(--violet))",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: 800,
+        fontSize: "0.9rem",
+        color: "#fff",
+        flexShrink: 0,
+        boxShadow: "var(--glow-indigo)",
+      }}
+    >
+      {n}
     </div>
   );
 }

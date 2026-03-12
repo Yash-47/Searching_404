@@ -1,0 +1,32 @@
+{
+  "Frontend Developer": {
+    "required": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Git", "REST API", "Responsive Design"]
+  },
+  "Backend Developer": {
+    "required": ["Node.js", "Express", "Python", "SQL", "PostgreSQL", "REST API", "GraphQL", "Docker", "Git", "API Design", "Authentication"]
+  },
+  "Full Stack Developer": {
+    "required": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Node.js", "Express", "SQL", "MongoDB", "Git", "Docker", "REST API"]
+  },
+  "Data Scientist": {
+    "required": ["Python", "Machine Learning", "Deep Learning", "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "Data Visualization", "Statistics", "SQL", "Jupyter"]
+  },
+  "Machine Learning Engineer": {
+    "required": ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "Scikit-learn", "Docker", "MLOps", "SQL", "Git", "Statistics"]
+  },
+  "DevOps Engineer": {
+    "required": ["Docker", "Kubernetes", "AWS", "CI/CD", "GitHub Actions", "Linux", "Terraform", "Ansible", "Bash", "Nginx", "Python"]
+  },
+  "Mobile Developer": {
+    "required": ["React Native", "Flutter", "JavaScript", "TypeScript", "Dart", "Git", "REST API", "Firebase", "Android", "iOS"]
+  },
+  "Cloud Architect": {
+    "required": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform", "CI/CD", "Linux", "Microservices", "System Design", "Python"]
+  },
+  "Blockchain Developer": {
+    "required": ["Solidity", "Web3", "Ethereum", "Smart Contracts", "JavaScript", "TypeScript", "Git", "Node.js", "React", "Blockchain"]
+  },
+  "Cybersecurity Engineer": {
+    "required": ["Linux", "Python", "Bash", "Networking", "Ethical Hacking", "Cryptography", "Docker", "Git", "SQL", "System Design"]
+  }
+}

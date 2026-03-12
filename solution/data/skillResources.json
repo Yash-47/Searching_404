@@ -1,0 +1,142 @@
+{
+  "HTML": [
+    { "title": "MDN HTML Guide", "url": "https://developer.mozilla.org/en-US/docs/Learn/HTML", "type": "documentation" },
+    { "title": "HTML Full Course – freeCodeCamp", "url": "https://www.youtube.com/watch?v=kUMe1FH4CHE", "type": "video" }
+  ],
+  "CSS": [
+    { "title": "MDN CSS Guide", "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS", "type": "documentation" },
+    { "title": "CSS Full Course – freeCodeCamp", "url": "https://www.youtube.com/watch?v=OXGznpKZ_sA", "type": "video" }
+  ],
+  "Tailwind CSS": [
+    { "title": "Tailwind CSS Docs", "url": "https://tailwindcss.com/docs", "type": "documentation" },
+    { "title": "Tailwind CSS Crash Course", "url": "https://www.youtube.com/watch?v=UBOj6rqRUME", "type": "video" }
+  ],
+  "JavaScript": [
+    { "title": "javascript.info", "url": "https://javascript.info", "type": "tutorial" },
+    { "title": "You Don't Know JS (book series)", "url": "https://github.com/getify/You-Dont-Know-JS", "type": "book" }
+  ],
+  "TypeScript": [
+    { "title": "TypeScript Official Docs", "url": "https://www.typescriptlang.org/docs/", "type": "documentation" },
+    { "title": "TypeScript Course – Matt Pocock", "url": "https://www.totaltypescript.com/tutorials", "type": "tutorial" }
+  ],
+  "React": [
+    { "title": "React Official Docs", "url": "https://react.dev", "type": "documentation" },
+    { "title": "React Full Course – Scrimba", "url": "https://scrimba.com/learn/learnreact", "type": "course" }
+  ],
+  "Next.js": [
+    { "title": "Next.js Official Docs", "url": "https://nextjs.org/docs", "type": "documentation" },
+    { "title": "Next.js Crash Course – Traversy Media", "url": "https://www.youtube.com/watch?v=mTz0GXj8NN0", "type": "video" }
+  ],
+  "Node.js": [
+    { "title": "Node.js Official Docs", "url": "https://nodejs.org/en/docs/", "type": "documentation" },
+    { "title": "The Complete Node.js Developer Course – Udemy", "url": "https://www.udemy.com/course/the-complete-nodejs-developer-course-2/", "type": "course" }
+  ],
+  "Express": [
+    { "title": "Express.js Guide", "url": "https://expressjs.com/en/guide/routing.html", "type": "documentation" },
+    { "title": "Express.js Crash Course", "url": "https://www.youtube.com/watch?v=L72fhGm1tfE", "type": "video" }
+  ],
+  "Python": [
+    { "title": "Python Official Tutorial", "url": "https://docs.python.org/3/tutorial/", "type": "documentation" },
+    { "title": "Python for Everybody – Coursera", "url": "https://www.coursera.org/specializations/python", "type": "course" }
+  ],
+  "SQL": [
+    { "title": "SQLZoo", "url": "https://sqlzoo.net/", "type": "tutorial" },
+    { "title": "Mode SQL Tutorial", "url": "https://mode.com/sql-tutorial/", "type": "tutorial" }
+  ],
+  "PostgreSQL": [
+    { "title": "PostgreSQL Official Docs", "url": "https://www.postgresql.org/docs/", "type": "documentation" },
+    { "title": "Learn PostgreSQL – freeCodeCamp", "url": "https://www.youtube.com/watch?v=qw--VYLpxG4", "type": "video" }
+  ],
+  "MongoDB": [
+    { "title": "MongoDB University", "url": "https://learn.mongodb.com/", "type": "course" },
+    { "title": "MongoDB Docs", "url": "https://www.mongodb.com/docs/", "type": "documentation" }
+  ],
+  "Git": [
+    { "title": "Pro Git Book (free)", "url": "https://git-scm.com/book/en/v2", "type": "book" },
+    { "title": "Git & GitHub Crash Course", "url": "https://www.youtube.com/watch?v=RGOj5yH7evk", "type": "video" }
+  ],
+  "Docker": [
+    { "title": "Docker Official Docs", "url": "https://docs.docker.com/", "type": "documentation" },
+    { "title": "Docker Tutorial for Beginners", "url": "https://www.youtube.com/watch?v=fqMOX6JJhGo", "type": "video" }
+  ],
+  "Kubernetes": [
+    { "title": "Kubernetes Official Docs", "url": "https://kubernetes.io/docs/home/", "type": "documentation" },
+    { "title": "Kubernetes Full Course – TechWorld with Nana", "url": "https://www.youtube.com/watch?v=X48VuDVv0do", "type": "video" }
+  ],
+  "AWS": [
+    { "title": "AWS Training & Certification", "url": "https://aws.amazon.com/training/", "type": "course" },
+    { "title": "AWS Cloud Practitioner Essentials (free)", "url": "https://explore.skillbuilder.aws/", "type": "course" }
+  ],
+  "Machine Learning": [
+    { "title": "Machine Learning Specialization – Andrew Ng", "url": "https://www.coursera.org/specializations/machine-learning-introduction", "type": "course" },
+    { "title": "fast.ai Practical Deep Learning", "url": "https://course.fast.ai/", "type": "course" }
+  ],
+  "Deep Learning": [
+    { "title": "Deep Learning Specialization – Coursera", "url": "https://www.coursera.org/specializations/deep-learning", "type": "course" },
+    { "title": "fast.ai Practical Deep Learning", "url": "https://course.fast.ai/", "type": "course" }
+  ],
+  "TensorFlow": [
+    { "title": "TensorFlow Official Tutorials", "url": "https://www.tensorflow.org/tutorials", "type": "documentation" },
+    { "title": "TensorFlow Developer Certificate", "url": "https://www.tensorflow.org/certificate", "type": "course" }
+  ],
+  "PyTorch": [
+    { "title": "PyTorch Official Tutorials", "url": "https://pytorch.org/tutorials/", "type": "documentation" },
+    { "title": "Deep Learning with PyTorch – freeCodeCamp", "url": "https://www.youtube.com/watch?v=GIsg-ZUy0MY", "type": "video" }
+  ],
+  "Pandas": [
+    { "title": "Pandas Official Docs", "url": "https://pandas.pydata.org/docs/", "type": "documentation" },
+    { "title": "Pandas Tutorial – Corey Schafer", "url": "https://www.youtube.com/playlist?list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS", "type": "video" }
+  ],
+  "React Native": [
+    { "title": "React Native Official Docs", "url": "https://reactnative.dev/docs/getting-started", "type": "documentation" },
+    { "title": "React Native Course – Expo", "url": "https://docs.expo.dev/tutorial/introduction/", "type": "tutorial" }
+  ],
+  "Flutter": [
+    { "title": "Flutter Official Docs", "url": "https://flutter.dev/docs", "type": "documentation" },
+    { "title": "Flutter Crash Course – Fireship", "url": "https://www.youtube.com/watch?v=1ukSR1GRtMU", "type": "video" }
+  ],
+  "GraphQL": [
+    { "title": "GraphQL Official Docs", "url": "https://graphql.org/learn/", "type": "documentation" },
+    { "title": "GraphQL Full Course – freeCodeCamp", "url": "https://www.youtube.com/watch?v=ed8SzALpx1Q", "type": "video" }
+  ],
+  "REST API": [
+    { "title": "RESTful API Design Best Practices", "url": "https://restfulapi.net/", "type": "tutorial" },
+    { "title": "API Design Guide – Google", "url": "https://cloud.google.com/apis/design", "type": "documentation" }
+  ],
+  "CI/CD": [
+    { "title": "GitHub Actions Docs", "url": "https://docs.github.com/en/actions", "type": "documentation" },
+    { "title": "CI/CD Full Course – TechWorld with Nana", "url": "https://www.youtube.com/watch?v=R8_veQiYBjI", "type": "video" }
+  ],
+  "Linux": [
+    { "title": "Linux Command Line Basics – Udacity", "url": "https://www.udacity.com/course/linux-command-line-basics--ud595", "type": "course" },
+    { "title": "The Linux Command Line (free book)", "url": "https://linuxcommand.org/tlcl.php", "type": "book" }
+  ],
+  "Terraform": [
+    { "title": "Terraform Official Docs", "url": "https://developer.hashicorp.com/terraform/docs", "type": "documentation" },
+    { "title": "Terraform Course – freeCodeCamp", "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo", "type": "video" }
+  ],
+  "Solidity": [
+    { "title": "Solidity Docs", "url": "https://docs.soliditylang.org/", "type": "documentation" },
+    { "title": "CryptoZombies (gamified Solidity)", "url": "https://cryptozombies.io/", "type": "tutorial" }
+  ],
+  "System Design": [
+    { "title": "System Design Primer (GitHub)", "url": "https://github.com/donnemartin/system-design-primer", "type": "book" },
+    { "title": "Grokking System Design Interview", "url": "https://www.educative.io/courses/grokking-the-system-design-interview", "type": "course" }
+  ],
+  "Scikit-learn": [
+    { "title": "Scikit-learn Official Tutorials", "url": "https://scikit-learn.org/stable/tutorial/index.html", "type": "documentation" },
+    { "title": "ML with Scikit-learn – Google Crash Course", "url": "https://developers.google.com/machine-learning/crash-course", "type": "course" }
+  ],
+  "Django": [
+    { "title": "Django Official Tutorial", "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/", "type": "documentation" },
+    { "title": "Django Full Course – Dennis Ivy", "url": "https://www.youtube.com/watch?v=PtQiiknWUcI", "type": "video" }
+  ],
+  "FastAPI": [
+    { "title": "FastAPI Official Docs", "url": "https://fastapi.tiangolo.com/", "type": "documentation" },
+    { "title": "FastAPI Full Course – freeCodeCamp", "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA", "type": "video" }
+  ],
+  "Firebase": [
+    { "title": "Firebase Docs", "url": "https://firebase.google.com/docs", "type": "documentation" },
+    { "title": "Firebase Full Course – Fireship", "url": "https://www.youtube.com/watch?v=9kRgVxULbag", "type": "video" }
+  ]
+}
