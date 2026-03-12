@@ -44,6 +44,33 @@ export default function Home() {
       .catch(console.error);
   }, []);
 
+  // Check for existing profile on load
+  useEffect(() => {
+    if (status === "authenticated") {
+      setAnalyzing(true);
+      fetch("/api/profile")
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.profile && d.profile.targetRole && (d.profile.detectedSkills as string[]).length > 0) {
+            setResult({
+              jobRole: d.profile.targetRole,
+              requiredSkills: [], 
+              matchedSkills: d.profile.matchedSkills as string[],
+              missingSkills: d.profile.missingSkills as string[],
+              bonusSkills: d.profile.bonusSkills as string[],
+              readinessScore: d.profile.readinessScore || 0,
+              roadmap: d.roadmap || [],
+            });
+            setResumeSkills(d.profile.detectedSkills as string[] || []);
+            setGithubSkills([]);
+            setSelectedRole(d.profile.targetRole);
+          }
+        })
+        .catch(console.error)
+        .finally(() => setAnalyzing(false));
+    }
+  }, [status]);
+
   // Merge skills from both sources (deduplicated)
   const allDetectedSkills = [...new Set([...resumeSkills, ...githubSkills])];
   const hasSkills = allDetectedSkills.length > 0;

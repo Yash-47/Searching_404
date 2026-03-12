@@ -165,8 +165,18 @@ export function generateRoadmap(missingSkills: string[]): RoadmapItem[] {
         type: "documentation",
       },
       {
+        title: `${skill} Complete Course — Udemy`,
+        url: `https://www.udemy.com/courses/search/?q=${encodeURIComponent(skill)}`,
+        type: "course",
+      },
+      {
+        title: `${skill} Specialization — Coursera`,
+        url: `https://www.coursera.org/search?query=${encodeURIComponent(skill)}`,
+        type: "course",
+      },
+      {
         title: `${skill} — freeCodeCamp Tutorial`,
-        url: `https://www.youtube.com/results?search_query=${encodeURIComponent(skill + " full course")}`,
+        url: `https://www.youtube.com/results?search_query=${encodeURIComponent(skill + " full course freecodecamp")}`,
         type: "video",
       },
     ];
